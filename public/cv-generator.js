@@ -1,6 +1,12 @@
 function generateCV() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+    doc.setProperties({
+        title: 'Panagiotis Zermpinos CV',
+        author: 'Panagiotis Zermpinos',
+        creator: 'Panagiotis Zermpinos',
+        producer: ''
+    });
 
     const PAGE_W = 210;
     const PAGE_H = 297;
