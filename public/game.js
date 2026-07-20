@@ -101,6 +101,7 @@
     var TILE = 40;
     var WORLD_W = COLS * TILE;
     var WORLD_H = ROWS * TILE;
+    var MIN_TILE = 34;          // keep tiles at least this big (CSS px); zoom + follow on small screens
 
     var STATIONS = [
         { id: 'about', tx: 11, ty: 2, w: 2, h: 2, color: COLOR.green },
@@ -120,20 +121,29 @@
     var coarse = window.matchMedia('(pointer: coarse)').matches;
     var promptLabel = coarse ? 'TAP' : 'E';
 
-    var view = { scale: 1, offX: 0, offY: 0, dpr: 1 };
+    var view = { scale: 1, offX: 0, offY: 0, dpr: 1, cw: 0, ch: 0, follow: false };
     var player = { x: 11.5 * TILE, y: 7.5 * TILE, w: TILE * 0.62, h: TILE * 0.5, vx: 0, vy: 0, speed: TILE * 5.4, facing: 'down', walk: 0 };
-    var input = { up: false, down: false, left: false, right: false };
+    var input = { up: false, down: false, left: false, right: false };  // keyboard
+    var stick = { active: false, ax: 0, ay: 0 };                        // analog joystick vector
+    var goal = { active: false, x: 0, y: 0, station: null, stuck: 0 };  // tap-to-walk target
+    // one active pointer at a time; disambiguates a tap (walk there) from a drag (joystick)
+    var touch = { id: null, ox: 0, oy: 0, moved: 0, dragging: false };
+    var STICK_DEAD = 14;
+    var STICK_RADIUS = 46;
     var active = null;
     var paused = false;
     var boot = 1;
+
+    function clamp(v, a, b) { return v < a ? a : (v > b ? b : v); }
 
     function hash(a, b) {
         var n = Math.sin(a * 12.9898 + b * 78.233) * 43758.5453;
         return n - Math.floor(n);
     }
 
+    var PN = coarse ? 14 : 26;
     var particles = [];
-    for (var i = 0; i < 26; i++) {
+    for (var i = 0; i < PN; i++) {
         particles.push({
             x: hash(i, 1) * WORLD_W,
             y: hash(i, 2) * WORLD_H,
@@ -193,16 +203,37 @@
         }
     })();
 
+    function cameraTarget() {
+        var s = view.scale, vw = view.cw, vh = view.ch;
+        var mapW = WORLD_W * s, mapH = WORLD_H * s;
+        var ox, oy;
+        if (mapW <= vw) ox = (vw - mapW) / 2;
+        else ox = clamp(vw / 2 - (player.x + player.w / 2) * s, vw - mapW, 0);
+        if (mapH <= vh) oy = (vh - mapH) / 2;
+        else oy = clamp(vh / 2 - (player.y + player.h / 2) * s, vh - mapH, 0);
+        return { x: ox, y: oy };
+    }
+
     function resize() {
         var dpr = Math.min(window.devicePixelRatio || 1, 2);
         var cw = canvas.clientWidth;
         var ch = canvas.clientHeight;
         canvas.width = Math.round(cw * dpr);
         canvas.height = Math.round(ch * dpr);
-        view.scale = Math.min(cw / WORLD_W, ch / WORLD_H);
-        view.offX = (cw - WORLD_W * view.scale) / 2;
-        view.offY = (ch - WORLD_H * view.scale) / 2;
+        var fit = Math.min(cw / WORLD_W, ch / WORLD_H);
+        view.scale = Math.max(fit, MIN_TILE / TILE);
+        view.follow = view.scale > fit + 0.0005;
         view.dpr = dpr;
+        view.cw = cw;
+        view.ch = ch;
+        var cam = cameraTarget();
+        view.offX = cam.x;
+        view.offY = cam.y;
+    }
+
+    function screenToWorld(px, py) {
+        var rect = canvas.getBoundingClientRect();
+        return { x: (px - rect.left - view.offX) / view.scale, y: (py - rect.top - view.offY) / view.scale };
     }
 
     function tileSolid(tx, ty) {
@@ -222,6 +253,16 @@
         return null;
     }
 
+    function stationAtWorld(x, y) {
+        for (var i = 0; i < STATIONS.length; i++) {
+            var s = STATIONS[i];
+            var sx = s.tx * TILE - 10, sy = s.ty * TILE - 10;
+            var sw = s.w * TILE + 20, sh = s.h * TILE + 20;
+            if (x >= sx && x <= sx + sw && y >= sy && y <= sy + sh) return s;
+        }
+        return null;
+    }
+
     function blocked(x, y, w, h) {
         var minTx = Math.floor(x / TILE);
         var maxTx = Math.floor((x + w - 0.001) / TILE);
@@ -236,18 +277,28 @@
     }
 
     function update(dt, now) {
+        var anyKey = input.left || input.right || input.up || input.down;
+        if (stick.active || anyKey) { goal.active = false; }
+
         var dx = 0, dy = 0;
         if (!paused) {
-            if (input.left) dx -= 1;
-            if (input.right) dx += 1;
-            if (input.up) dy -= 1;
-            if (input.down) dy += 1;
+            if (stick.active) {
+                dx = stick.ax; dy = stick.ay;
+            } else if (anyKey) {
+                if (input.left) dx -= 1;
+                if (input.right) dx += 1;
+                if (input.up) dy -= 1;
+                if (input.down) dy += 1;
+                if (dx !== 0 && dy !== 0) { var inv = 1 / Math.sqrt(2); dx *= inv; dy *= inv; }
+            } else if (goal.active) {
+                var tx = goal.x - (player.x + player.w / 2);
+                var ty = goal.y - (player.y + player.h / 2);
+                var dist = Math.sqrt(tx * tx + ty * ty);
+                if (!goal.station && dist <= TILE * 0.3) { goal.active = false; }
+                else if (dist > 0.001) { dx = tx / dist; dy = ty / dist; }
+            }
         }
-        if (dx !== 0 && dy !== 0) {
-            var inv = 1 / Math.sqrt(2);
-            dx *= inv;
-            dy *= inv;
-        }
+
         var ease = Math.min(1, dt * 14);
         player.vx += (dx * player.speed - player.vx) * ease;
         player.vy += (dy * player.speed - player.vy) * ease;
@@ -256,16 +307,36 @@
             else player.facing = dx < 0 ? 'left' : 'right';
         }
 
+        var beforeX = player.x, beforeY = player.y;
         var nx = player.x + player.vx * dt;
         if (!blocked(nx, player.y, player.w, player.h)) player.x = nx; else player.vx = 0;
         var ny = player.y + player.vy * dt;
         if (!blocked(player.x, ny, player.w, player.h)) player.y = ny; else player.vy = 0;
+
+        // give up on a floor target we can't make progress toward (e.g. hugging a wall)
+        if (goal.active && !goal.station && (dx !== 0 || dy !== 0)) {
+            if (Math.abs(player.x - beforeX) + Math.abs(player.y - beforeY) < 0.05) {
+                goal.stuck += dt;
+                if (goal.stuck > 0.35) goal.active = false;
+            } else { goal.stuck = 0; }
+        }
 
         var moving = Math.abs(player.vx) + Math.abs(player.vy) > 12;
         player.walk += dt * (moving ? 9 : 0);
         if (!moving) player.walk = 0;
 
         active = rectHitsStation(player.x, player.y, player.w, player.h, TILE * 0.55);
+
+        // auto-open the station we tap-walked to, the moment we arrive
+        if (goal.active && goal.station && active && active.id === goal.station.id) {
+            goal.active = false;
+            openStation(active.id);
+        }
+
+        var camEase = reduceMotion ? 1 : Math.min(1, dt * 8);
+        var cam = cameraTarget();
+        view.offX += (cam.x - view.offX) * camEase;
+        view.offY += (cam.y - view.offY) * camEase;
 
         if (!reduceMotion) {
             for (var i = 0; i < particles.length; i++) {
@@ -327,21 +398,25 @@
         roundRect(ctx, x + 9, y + 9, w - 18, h - 26, 4);
         ctx.fill();
 
-        ctx.save();
-        ctx.shadowColor = s.color;
-        ctx.shadowBlur = on ? 16 : 8;
+        // glow only for the active station (shadowBlur is costly on mobile)
         ctx.fillStyle = s.color;
         ctx.font = '600 24px "JetBrains Mono", monospace';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.globalAlpha = on ? 1 : 0.92;
-        ctx.fillText(s.glyph, x + w / 2, y + h / 2 - 5);
-        ctx.restore();
+        if (on) {
+            ctx.save();
+            ctx.shadowColor = s.color;
+            ctx.shadowBlur = 16;
+            ctx.fillText(s.glyph, x + w / 2, y + h / 2 - 5);
+            ctx.restore();
+        } else {
+            ctx.globalAlpha = 0.92;
+            ctx.fillText(s.glyph, x + w / 2, y + h / 2 - 5);
+            ctx.globalAlpha = 1;
+        }
 
         ctx.fillStyle = COLOR.text;
         ctx.font = '600 9px "JetBrains Mono", monospace';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
         ctx.fillText(s.label.toUpperCase(), x + w / 2, y + h - 11);
 
         ctx.lineWidth = on ? 2.5 : 1.5;
@@ -372,10 +447,57 @@
         }
     }
 
+    function chevron(x, y, dir) {
+        // dir -1 points left, +1 points right (outward, toward off-screen stations)
+        ctx.beginPath();
+        ctx.moveTo(x - dir * 7, y - 10);
+        ctx.lineTo(x + dir * 7, y);
+        ctx.lineTo(x - dir * 7, y + 10);
+        ctx.stroke();
+    }
+
+    function drawEdgeGuides(now) {
+        var left = false, right = false;
+        for (var i = 0; i < STATIONS.length; i++) {
+            var s = STATIONS[i];
+            var cxs = ((s.tx + s.w / 2) * TILE) * view.scale + view.offX;
+            if (cxs < 6) left = true; else if (cxs > view.cw - 6) right = true;
+        }
+        if (!left && !right) return;
+        var midY = view.ch / 2;
+        ctx.save();
+        ctx.strokeStyle = COLOR.green;
+        ctx.lineWidth = 3;
+        ctx.lineJoin = 'round';
+        ctx.lineCap = 'round';
+        ctx.globalAlpha = reduceMotion ? 0.5 : 0.35 + 0.25 * (0.5 + 0.5 * Math.sin(now / 300));
+        if (left) chevron(16, midY, -1);
+        if (right) chevron(view.cw - 16, midY, 1);
+        ctx.restore();
+    }
+
+    function drawJoystick() {
+        var rect = canvas.getBoundingClientRect();
+        var jx = touch.ox - rect.left, jy = touch.oy - rect.top;
+        ctx.save();
+        ctx.strokeStyle = COLOR.green;
+        ctx.fillStyle = COLOR.green;
+        ctx.globalAlpha = 0.22;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(jx, jy, STICK_RADIUS, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.globalAlpha = 0.55;
+        ctx.beginPath();
+        ctx.arc(jx + stick.ax * STICK_RADIUS, jy + stick.ay * STICK_RADIUS, 17, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+    }
+
     function render(now) {
         ctx.setTransform(view.dpr, 0, 0, view.dpr, 0, 0);
         ctx.imageSmoothingEnabled = false;
-        ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+        ctx.clearRect(0, 0, view.cw, view.ch);
         ctx.save();
         ctx.translate(view.offX, view.offY);
         ctx.scale(view.scale, view.scale);
@@ -413,15 +535,16 @@
 
         ctx.restore();
 
+        // screen-space overlays
+        if (view.follow) drawEdgeGuides(now);
+        if (stick.active) drawJoystick();
+
         if (boot > 0) {
-            ctx.setTransform(view.dpr, 0, 0, view.dpr, 0, 0);
             ctx.globalAlpha = boot;
             ctx.fillStyle = '#05070a';
-            ctx.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+            ctx.fillRect(0, 0, view.cw, view.ch);
             ctx.globalAlpha = 1;
         }
-
-        requestAnimationFrame(loop);
     }
 
     var last = 0;
@@ -429,14 +552,19 @@
         if (!last) last = now;
         var dt = Math.min((now - last) / 1000, 0.05);
         last = now;
-        update(dt, now);
-        render(now);
+        if (!paused) { update(dt, now); render(now); }
+        requestAnimationFrame(loop);
     }
 
     // panel
     var backdrop = document.getElementById('panelBackdrop');
     var panelBody = document.getElementById('panelBody');
     var panelClose = document.getElementById('panelClose');
+    var hint = document.querySelector('.controls-hint');
+
+    function hideHint() {
+        if (hint) hint.classList.add('gone');
+    }
 
     function el(tag, cls, text) {
         var e = document.createElement(tag);
@@ -524,6 +652,9 @@
     function openStation(id) {
         var st = data.stations[id];
         if (!st) return;
+        goal.active = false;
+        stick.active = false; stick.ax = 0; stick.ay = 0;
+        touch.id = null; touch.dragging = false;
         while (panelBody.firstChild) panelBody.removeChild(panelBody.firstChild);
         var title = el('h2', 'panel-title', st.label);
         title.id = 'panelTitle';
@@ -548,7 +679,7 @@
         if (e.target === backdrop) closePanel();
     });
 
-    // input
+    // keyboard
     var KEYMAP = {
         KeyW: 'up', ArrowUp: 'up',
         KeyS: 'down', ArrowDown: 'down',
@@ -565,6 +696,7 @@
         var onControl = ae && (ae.tagName === 'BUTTON' || ae.tagName === 'A');
         if (KEYMAP[e.code]) {
             input[KEYMAP[e.code]] = true;
+            hideHint();
             e.preventDefault();
         } else if (e.code === 'KeyE') {
             if (active) { openStation(active.id); e.preventDefault(); }
@@ -576,22 +708,62 @@
         if (KEYMAP[e.code]) input[KEYMAP[e.code]] = false;
     });
 
-    function bindHold(elm, dir) {
-        function on(e) { input[dir] = true; e.preventDefault(); }
-        function off() { input[dir] = false; }
-        elm.addEventListener('pointerdown', on);
-        elm.addEventListener('pointerup', off);
-        elm.addEventListener('pointerleave', off);
-        elm.addEventListener('pointercancel', off);
+    // pointer: tap a spot/station to walk there; press-and-drag for a floating joystick
+    function handleTap(clientX, clientY) {
+        if (paused) return;
+        var w = screenToWorld(clientX, clientY);
+        var s = stationAtWorld(w.x, w.y);
+        if (s) {
+            if (active && active.id === s.id) { openStation(s.id); return; }
+            goal.active = true; goal.station = s; goal.stuck = 0;
+            goal.x = (s.tx + s.w / 2) * TILE;
+            goal.y = (s.ty + s.h / 2) * TILE;
+        } else {
+            goal.active = true; goal.station = null; goal.stuck = 0;
+            goal.x = clamp(w.x, TILE * 1.2, WORLD_W - TILE * 1.2);
+            goal.y = clamp(w.y, TILE * 1.2, WORLD_H - TILE * 1.2);
+        }
+        hideHint();
     }
-    document.querySelectorAll('[data-dir]').forEach(function (b) {
-        bindHold(b, b.getAttribute('data-dir'));
+
+    canvas.addEventListener('pointerdown', function (e) {
+        if (paused || touch.id !== null) return;
+        touch.id = e.pointerId;
+        touch.ox = e.clientX; touch.oy = e.clientY;
+        touch.moved = 0; touch.dragging = false;
+        if (canvas.setPointerCapture) { try { canvas.setPointerCapture(e.pointerId); } catch (err) {} }
+        e.preventDefault();
     });
-    var actionBtn = document.getElementById('actionBtn');
-    if (actionBtn) {
-        actionBtn.addEventListener('click', function () {
-            if (active) openStation(active.id);
-        });
+    canvas.addEventListener('pointermove', function (e) {
+        if (e.pointerId !== touch.id) return;
+        var dx = e.clientX - touch.ox, dy = e.clientY - touch.oy;
+        var d = Math.sqrt(dx * dx + dy * dy);
+        if (d > touch.moved) touch.moved = d;
+        if (!touch.dragging && d > STICK_DEAD) { touch.dragging = true; goal.active = false; hideHint(); }
+        if (touch.dragging) {
+            var mag = Math.min(1, d / STICK_RADIUS);
+            var inv = d > 0.001 ? 1 / d : 0;
+            stick.active = true;
+            stick.ax = dx * inv * mag;
+            stick.ay = dy * inv * mag;
+        }
+        e.preventDefault();
+    });
+    function endTouch(e) {
+        if (e.pointerId !== touch.id) return;
+        if (!touch.dragging && touch.moved <= STICK_DEAD) handleTap(touch.ox, touch.oy);
+        touch.id = null; touch.dragging = false;
+        stick.active = false; stick.ax = 0; stick.ay = 0;
+    }
+    canvas.addEventListener('pointerup', endTouch);
+    canvas.addEventListener('pointercancel', endTouch);
+
+    document.addEventListener('visibilitychange', function () { if (!document.hidden) last = 0; });
+
+    if (hint) {
+        hint.textContent = coarse
+            ? 'Tap a section to walk there · drag to move'
+            : 'WASD / Arrows to move · E to open · Esc to close';
     }
 
     window.addEventListener('resize', resize);
