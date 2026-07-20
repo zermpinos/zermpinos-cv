@@ -1,6 +1,6 @@
 # ZermpinosCV
 
-Personal portfolio and CV site for Panagiotis Zermpinos. A static single-page site deployed on Vercel with a client-side PDF export.
+Personal portfolio and CV site for Panagiotis Zermpinos. The site root is an interactive, walkable game version of the CV; a classic scrolling CV lives at `/classic`. Deployed on Vercel with a client-side PDF export, no framework and no build step.
 
 ---
 
@@ -10,9 +10,13 @@ All static files live under `public/` and are served by Vercel. There is no buil
 
 | Path | Purpose |
 |------|---------|
-| `public/index.html` | Document structure: navigation, hero, experience, education, skills, and projects sections; structured data (JSON-LD) and Open Graph meta tags |
+| `public/index.html` | Site root: the interactive **walkable CV game** (canvas + HUD); carries full SEO meta, Open Graph tags, and Person JSON-LD |
+| `public/classic.html` | Classic scrolling CV at `/classic`: hero, impact stats, experience, education, skills, projects, and contact; JSON-LD and Open Graph meta |
+| `public/game.js` | 2D top-down game engine: rendering, follow-camera, keyboard + tap + joystick input, and the station panels |
+| `public/cv-data.js` | Single source of CV content (about, experience, skills, education, projects, contact) that feeds the game panels |
+| `public/explore.css` | Styling for the game/explore view: canvas stage, HUD, and panels |
 | `public/styles.css` | Full visual layer: dark theme, responsive layout, scroll progress indicator, animated cards, mobile hamburger menu |
-| `public/script.js` | Scroll progress bar, smooth scrolling, active nav link highlighting via `IntersectionObserver`, hamburger menu toggle, dynamic footer year |
+| `public/script.js` | Classic page behavior: scroll progress bar, smooth scrolling, active nav highlighting via `IntersectionObserver`, hamburger menu, dynamic footer year |
 | `public/cv-generator.js` | Client-side one-page PDF export via jsPDF; renders header, summary, experience, education, skills, and projects sections to A4 |
 | `public/jspdf.umd.min.js` | Vendored jsPDF UMD bundle; self-hosted to satisfy `script-src 'self'` CSP |
 | `public/favicon.svg` | SVG favicon |
@@ -82,7 +86,7 @@ After any change to a static asset, recompute SRI hashes before committing:
 
 ```bash
 bash bin/sri.sh
-# update the integrity="..." attributes in public/index.html
+# update the integrity="..." attributes in public/index.html and public/classic.html
 ```
 
 Live at: `https://zermpinos.vercel.app/`
