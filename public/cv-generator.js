@@ -237,11 +237,6 @@ function generateCV() {
 
     // === SKILLS ===
     if (addSectionTitle('Technical Skills')) {
-        addText('Cybersecurity & Forensics:', { size: 9, bold: true, color: 30 });
-        y += 1;
-        addText('System Hardening, Forensic Instrument Support, CTF / Pen Testing Labs', { size: 9, color: 50, indent: 4 });
-        y += 1;
-
         addText('IT Operations & Support:', { size: 9, bold: true, color: 30 });
         y += 1;
         addText('Field Systems Maintenance, L1/L2 Technical Support, Endpoint & Linux Administration, Incident Triage & Response', { size: 9, color: 50, indent: 4 });

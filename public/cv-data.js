@@ -39,7 +39,6 @@ window.CV_DATA = {
             label: 'Skills',
             glyph: '/',
             blocks: [
-                { t: 'group', title: 'Cybersecurity & Forensics', tags: ['System Hardening', 'Forensic Instrument Support', 'CTF / Pen Testing Labs'] },
                 { t: 'group', title: 'IT Operations & Support', tags: ['Field Systems Maintenance', 'L1/L2 Technical Support', 'Endpoint & Linux Administration', 'Incident Triage & Response'] },
                 { t: 'group', title: 'Development & Automation', tags: ['Python', 'MATLAB', 'Git', 'Data Analysis'] },
                 { t: 'group', title: 'Quality & Compliance', tags: ['ISO 27001', 'ISO 9001', 'ISO 13485', 'ISO 14001', 'ISO 45001'] }
