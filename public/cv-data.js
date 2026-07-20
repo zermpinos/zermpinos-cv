@@ -37,7 +37,7 @@ window.CV_DATA = {
         },
         skills: {
             label: 'Skills',
-            glyph: '#',
+            glyph: '/',
             blocks: [
                 { t: 'group', title: 'Cybersecurity & Forensics', tags: ['System Hardening', 'Security Operations', 'Digital Forensics', 'CTF / Pen Testing Labs'] },
                 { t: 'group', title: 'IT Operations & Support', tags: ['Infrastructure Maintenance', 'L1/L2 Technical Support', 'System Administration', 'Incident Response'] },
