@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Explore | Panagiotis Zermpinos</title>
+    <meta name="description" content="An interactive, walkable version of Panagiotis Zermpinos' CV. Move a character between stations to read each section, or download the PDF.">
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://zermpinos.vercel.app/">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+    <link rel="stylesheet" href="/styles.css" integrity="sha384-emAFesfPLKHJiDuQiZfkLQP2Da/QH+D8QsCj9lhi8cJu5bp9kFhRrpTzIEfnqq2+" crossorigin="anonymous">
+    <link rel="stylesheet" href="/explore.css?v=2026-07-20" integrity="sha384-LI7jXycUoi016dC4/ZUAolhetIeIEd1OZy6RvGJvQwsZrIeCXWzHAC8q0XPrIiQR" crossorigin="anonymous">
+</head>
+<body class="explore-body">
+    <noscript>
+        <div class="noscript-msg">
+            <p>This interactive view needs JavaScript. <a href="/">Open the standard CV</a>.</p>
+        </div>
+    </noscript>
+
+    <div class="explore-stage">
+        <canvas id="world" tabindex="0" role="application" aria-label="Walkable CV. Use W A S D or arrow keys to move the character to a station, then press E to open that section."></canvas>
+
+        <div class="hud">
+            <div class="hud-title">
+                <span class="hud-name">PANAGIOTIS ZERMPINOS</span>
+                <span class="hud-role">Technical Operations Engineer | Cybersecurity</span>
+            </div>
+            <div class="hud-actions">
+                <button type="button" id="downloadCvBtn" class="explore-btn primary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Download CV
+                </button>
+                <a href="/" class="explore-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                    Classic view
+                </a>
+            </div>
+        </div>
+
+        <div class="controls-hint mono">WASD / Arrows to move | E to open | Esc to close</div>
+
+        <div class="touch-controls">
+            <div class="dpad" role="group" aria-label="Movement controls">
+                <button type="button" class="up" data-dir="up" aria-label="Move up">^</button>
+                <button type="button" class="left" data-dir="left" aria-label="Move left">&lt;</button>
+                <button type="button" class="right" data-dir="right" aria-label="Move right">&gt;</button>
+                <button type="button" class="down" data-dir="down" aria-label="Move down">v</button>
+            </div>
+            <button type="button" id="actionBtn" class="action-btn" aria-label="Open nearby station">E</button>
+        </div>
+    </div>
+
+    <div class="panel-backdrop" id="panelBackdrop">
+        <div class="panel" role="dialog" aria-modal="true" aria-labelledby="panelTitle">
+            <button type="button" class="panel-close" id="panelClose" aria-label="Close">x</button>
+            <div id="panelBody"></div>
+        </div>
+    </div>
+
+    <script src="/cv-data.js?v=2026-07-20" integrity="sha384-CnoypM+yzoy+ewId//idWggdt58O7UZHk4VDXiq1kM3hjC7CJGz0jVKALGL/ajDe" crossorigin="anonymous"></script>
+    <script src="/jspdf.umd.min.js" integrity="sha384-GwHhSt8QjC7J+v0zZ0Flfho/T76YHEcCL9w4rvjTIUHauh6gWJeBSIi3vWXxNhtA" crossorigin="anonymous"></script>
+    <script src="/cv-generator.js?v=2026-06-13" integrity="sha384-Sp05LJuC2ois6gGFmFD6ejnTGkynSg6Azh5TQXmcyjpPzY9xxkZikJw/6zK7V8Xm" crossorigin="anonymous"></script>
+    <script src="/game.js?v=2026-07-20" integrity="sha384-UEqjj87fFmO7EmQ3IQM4sg/0HVA/An00x7PG9kYjbf/+9Bmuad30Gi7RFB7VO9Yy" crossorigin="anonymous"></script>
+</body>
+</html>
