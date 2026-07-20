@@ -1,6 +1,9 @@
 {
   "outputDirectory": "public",
   "cleanUrls": true,
+  "redirects": [
+    { "source": "/explore", "destination": "/", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/(.*)",

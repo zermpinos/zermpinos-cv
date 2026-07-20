@@ -103,12 +103,12 @@
     var WORLD_H = ROWS * TILE;
 
     var STATIONS = [
-        { id: 'about', tx: 11, ty: 2, w: 2, h: 2, color: COLOR.cyan },
+        { id: 'about', tx: 11, ty: 2, w: 2, h: 2, color: COLOR.green },
         { id: 'experience', tx: 3, ty: 2, w: 2, h: 2, color: COLOR.green },
-        { id: 'skills', tx: 19, ty: 2, w: 2, h: 2, color: COLOR.cyan },
+        { id: 'skills', tx: 19, ty: 2, w: 2, h: 2, color: COLOR.green },
         { id: 'education', tx: 3, ty: 12, w: 2, h: 2, color: COLOR.green },
         { id: 'contact', tx: 11, ty: 12, w: 2, h: 2, color: COLOR.green },
-        { id: 'projects', tx: 19, ty: 12, w: 2, h: 2, color: COLOR.cyan }
+        { id: 'projects', tx: 19, ty: 12, w: 2, h: 2, color: COLOR.green }
     ];
     STATIONS.forEach(function (s) {
         var d = data.stations[s.id];
