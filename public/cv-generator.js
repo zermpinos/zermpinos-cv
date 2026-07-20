@@ -118,7 +118,7 @@ function generateCV() {
     doc.setFont('Helvetica', 'normal');
     doc.setFontSize(10);
     doc.setTextColor(60);
-    doc.text('Technical Operations Engineer | Cybersecurity', MARGIN_L, y);
+    doc.text('Technical Operations Engineer, moving into Cybersecurity', MARGIN_L, y);
     y += 5;
 
     doc.setFont('Helvetica', 'normal');
@@ -239,22 +239,22 @@ function generateCV() {
     if (addSectionTitle('Technical Skills')) {
         addText('Cybersecurity & Forensics:', { size: 9, bold: true, color: 30 });
         y += 1;
-        addText('System Hardening, Security Operations, Forensic Systems Support, CTF / Pen Testing Labs', { size: 9, color: 50, indent: 4 });
+        addText('System Hardening, Forensic Instrument Support, CTF / Pen Testing Labs', { size: 9, color: 50, indent: 4 });
         y += 1;
 
         addText('IT Operations & Support:', { size: 9, bold: true, color: 30 });
         y += 1;
-        addText('Infrastructure Maintenance, L1/L2 Technical Support, System Administration, Incident Response', { size: 9, color: 50, indent: 4 });
+        addText('Field Systems Maintenance, L1/L2 Technical Support, Endpoint & Linux Administration, Incident Triage & Response', { size: 9, color: 50, indent: 4 });
         y += 1;
 
         addText('Development & Automation:', { size: 9, bold: true, color: 30 });
         y += 1;
-        addText('Python, Docker, Git, MATLAB, Process Automation, Data Analysis, Programming, Engineering', { size: 9, color: 50, indent: 4 });
+        addText('Python, MATLAB, Git, Data Analysis', { size: 9, color: 50, indent: 4 });
         y += 1;
 
         addText('Quality & Compliance:', { size: 9, bold: true, color: 30 });
         y += 1;
-        addText('ISO 27001, ISO 9001, ISO 13485, ISO 14001, ISO 45001, Quality Management', { size: 9, color: 50, indent: 4 });
+        addText('ISO 27001, ISO 9001, ISO 13485, ISO 14001, ISO 45001', { size: 9, color: 50, indent: 4 });
         y += 2;
     }
 
@@ -278,7 +278,7 @@ function generateCV() {
         doc.setTextColor(150);
         doc.text('JUN 2026 - PRESENT', MARGIN_L, y);
         y += 3.5;
-        addText('Structured 22-module backend curriculum progressing through Python, Go, SQL, Docker, data structures, algorithms, and distributed systems. Currently in the Python fundamentals module.', { size: 8.5, color: 50 });
+        addText('Working through the Back-end Developer Path (Python & Go). Completed Python (fundamentals + OOP), Linux, and Git with hands-on projects (a Python AI agent, Bookbot, and an Asteroids game). Currently working through Go, functional programming, and data structures & algorithms.', { size: 8.5, color: 50 });
         y += 2;
 
         // Pi-hole -APR 2026
@@ -345,8 +345,8 @@ function generateCV() {
         doc.setFont('Helvetica', 'bold');
         doc.setFontSize(9.5);
         doc.setTextColor(0);
-        doc.text('Penetration Testing Labs - HackTheBox & TryHackMe', MARGIN_L, y);
-        let htbTx = MARGIN_L + doc.getTextWidth('Penetration Testing Labs - HackTheBox & TryHackMe') + 2;
+        doc.text('Security Labs (learning) - HackTheBox & TryHackMe', MARGIN_L, y);
+        let htbTx = MARGIN_L + doc.getTextWidth('Security Labs (learning) - HackTheBox & TryHackMe') + 2;
         doc.setFont('Helvetica', 'normal');
         doc.setFontSize(8.5);
         htbTx += drawLink('(HTB)', htbTx, y, 'https://profile.hackthebox.com/profile/019d715f-7a77-7056-a7c5-88f6a3490217');
@@ -360,7 +360,7 @@ function generateCV() {
         doc.setTextColor(150);
         doc.text('FEB 2025 - PRESENT', MARGIN_L, y);
         y += 3.5;
-        addText('Practical offensive security labs covering privilege escalation, enumeration, and exploitation (HackTheBox); guided learning paths covering web, network, and forensics challenges (TryHackMe).', { size: 8.5, color: 50 });
+        addText('Working through beginner-level HackTheBox machines and TryHackMe rooms to build practical security fundamentals: enumeration, privilege escalation, and working with known exploits.', { size: 8.5, color: 50 });
         y += 2;
     }
 
