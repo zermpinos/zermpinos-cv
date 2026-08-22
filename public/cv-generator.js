@@ -151,7 +151,7 @@ function generateCV() {
         addText(
             'Technical Operations Engineer with 3+ years maintaining critical law enforcement infrastructure nationwide. ' +
             'Sole technical owner of 50+ forensic instruments across Greece, delivering 99.5% uptime on a ~\u20AC3M project. ' +
-            'Bringing operational discipline, security-critical experience, and ISO compliance expertise into cybersecurity and IT operations roles.',
+            'Bringing operational discipline, security-critical experience, and ISO compliance expertise into cybersecurity and IT operations roles, backed by a self-hosted Linux and Docker network security stack built and documented first-hand.',
             { size: 9, color: 40 }
         );
         y += 2;
@@ -242,6 +242,11 @@ function generateCV() {
         addText('Field Systems Maintenance, L1/L2 Technical Support, Endpoint & Linux Administration, Incident Triage & Response', { size: 9, color: 50, indent: 4 });
         y += 1;
 
+        addText('Networking & Security:', { size: 9, bold: true, color: 30 });
+        y += 1;
+        addText('Docker, DNS (Pi-hole / unbound), nftables, WireGuard, Network Segmentation, Backup & Disaster Recovery', { size: 9, color: 50, indent: 4 });
+        y += 1;
+
         addText('Development & Automation:', { size: 9, bold: true, color: 30 });
         y += 1;
         addText('Python, MATLAB, Git, Data Analysis', { size: 9, color: 50, indent: 4 });
@@ -276,12 +281,12 @@ function generateCV() {
         addText('Working through the Back-end Developer Path (Python & Go). Completed Python (fundamentals + OOP), Linux, and Git with hands-on projects (a Python AI agent, Bookbot, and an Asteroids game). Currently working through Go, functional programming, and data structures & algorithms.', { size: 8.5, color: 50 });
         y += 2;
 
-        // Pi-hole -APR 2026
-        checkPage(16);
+        // Homelab -APR 2026
+        checkPage(30);
         doc.setFont('Helvetica', 'bold');
         doc.setFontSize(9.5);
         doc.setTextColor(0);
-        doc.text('Network-Wide Ad Blocking & Privacy Protection', MARGIN_L, y);
+        doc.text('Home Network Security & Infrastructure', MARGIN_L, y);
         doc.setFont('Helvetica', 'normal');
         doc.setFontSize(8.5);
         doc.setTextColor(100);
@@ -292,7 +297,7 @@ function generateCV() {
         doc.setTextColor(150);
         doc.text('APR 2026 - PRESENT', MARGIN_L, y);
         y += 3.5;
-        addText('Docker-based Pi-hole with DHCP auto-routing, 4 curated blocklists, and 6 device-specific policies, protecting 5+ devices from 350k+ malicious domains with zero per-device config.', { size: 8.5, color: 50 });
+        addText('Self-hosted five-container Docker stack on a Raspberry Pi running DNS, VPN and home automation for a 12-device household. Recursive DNSSEC-validating resolver so no upstream provider sees household queries, 362k blocked domains, and both DNS-over-TLS and DNS-over-HTTPS bypass routes closed at the router. Seven IoT devices segmented to zero internet egress with local control intact, after DNS blocking alone left 576k refused cloud callbacks in 30 days. Default-deny nftables host firewall, WireGuard remote access, and pull-only nightly backups. Documented as a 33-note runbook set with a disaster-recovery procedure verified against a rebuild checklist.', { size: 8.5, color: 50 });
         y += 2;
 
         // AK -MAR 2026
