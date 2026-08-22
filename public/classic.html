@@ -8,7 +8,7 @@
     <title>Panagiotis Zermpinos | Technical Operations Engineer, moving into Cybersecurity</title>
     <meta name="description" content="Technical Operations Engineer based in Athens, Greece with 3+ years maintaining critical law enforcement infrastructure nationwide. 99.5% uptime across 50+ systems. Open to cybersecurity and IT ops roles.">
     <meta name="author" content="Panagiotis Zermpinos">
-    <meta name="keywords" content="Technical Support Engineer, IT Operations, Cybersecurity, Forensic Instrument Support, Athens, Greece, Endpoint &amp; Linux Administration, Field Systems, HackTheBox, ISO 27001">
+    <meta name="keywords" content="Technical Support Engineer, IT Operations, Cybersecurity, Forensic Instrument Support, Athens, Greece, Endpoint &amp; Linux Administration, Field Systems, HackTheBox, ISO 27001, Docker, DNS Security, Network Segmentation, Home Lab">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://zermpinos.vercel.app/classic">
 
@@ -29,7 +29,7 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="/styles.css" integrity="sha384-CB3OUXGaA7wagildPz7NoNVFm8P4SALtku5nM0wO321hBLTlDI01fR4aiS+YbuE+" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles.css" integrity="sha384-YQ6QWcia2l+VJPBSyumSW6fJKyFWVxZa91gWfd8Jqf05hzsmux2395KiZ3ZyzJlG" crossorigin="anonymous">
 
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -92,7 +92,7 @@
                 <p class="hero-description">
                     Kept <span class="accent-text">critical law enforcement infrastructure running nationwide</span> for 3+ years:
                     50+ forensic instruments, a €3M project, and 99.5% uptime across Greece.
-                    Now bringing that operational discipline into <span class="accent-text">cybersecurity and IT operations</span>.
+                    Now bringing that operational discipline into <span class="accent-text">cybersecurity and IT operations</span>, backed by a self-hosted Linux and Docker network security stack built and documented first-hand.
                 </p>
                 <div class="cta-buttons">
                     <a href="/" class="btn btn-primary" aria-label="Explore the interactive, walkable version of this CV">
@@ -226,6 +226,18 @@
                 </div>
 
                 <div class="skill-category">
+                    <h3>Networking & Security</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">DNS (Pi-hole / unbound)</span>
+                        <span class="skill-tag">nftables</span>
+                        <span class="skill-tag">WireGuard</span>
+                        <span class="skill-tag">Network Segmentation</span>
+                        <span class="skill-tag">Backup & Disaster Recovery</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
                     <h3>Development & Automation</h3>
                     <div class="skill-tags">
                         <span class="skill-tag">Python</span>
@@ -280,18 +292,19 @@
             <div class="project-featured">
                 <div class="project-featured-header">
                     <span class="project-tag">LIVE</span>
-                    <h3 class="project-title">Network-Wide Ad Blocking &amp; Privacy Protection</h3>
+                    <h3 class="project-title">Home Network Security &amp; Infrastructure</h3>
                     <p class="project-date mono">APR 2026 - PRESENT</p>
                     <p class="project-description">
-                        Docker-based Pi-hole infrastructure with DHCP auto-routing, 4 curated blocklists, and 6 device-specific security policies, protecting 5+ devices from 350k+ malicious domains (ads, trackers, malware, phishing) with zero per-device configuration.
+                        Self-hosted five-container Docker stack on a Raspberry Pi running DNS, VPN and home automation for a 12-device household. Recursive DNSSEC-validating resolver so no upstream provider sees household queries, 362k blocked domains, and both DNS-over-TLS and DNS-over-HTTPS bypass routes closed at the router. Seven IoT devices segmented to zero internet egress with local control intact, after DNS blocking alone left 576k refused cloud callbacks in 30 days. Default-deny nftables host firewall, WireGuard remote access, and pull-only nightly backups. Documented as a 33-note runbook set with a disaster-recovery procedure verified against a rebuild checklist.
                     </p>
                 </div>
                 <div class="project-tech">
                     <span class="tech-badge">Docker</span>
-                    <span class="tech-badge">DNS / DHCP</span>
                     <span class="tech-badge">Linux</span>
-                    <span class="tech-badge">Network Security</span>
-                    <span class="tech-badge">Pi-hole</span>
+                    <span class="tech-badge">nftables</span>
+                    <span class="tech-badge">DNS (Pi-hole / unbound)</span>
+                    <span class="tech-badge">WireGuard</span>
+                    <span class="tech-badge">Network Segmentation</span>
                 </div>
             </div>
 
@@ -467,7 +480,7 @@
     </footer>
 
     <script src="/jspdf.umd.min.js" integrity="sha384-GwHhSt8QjC7J+v0zZ0Flfho/T76YHEcCL9w4rvjTIUHauh6gWJeBSIi3vWXxNhtA" crossorigin="anonymous"></script>
-    <script src="/cv-generator.js?v=2026-07-21" integrity="sha384-qU610GVwYSVzPuA60yfoUknXGjATqbdg3cYuvCV0LFpJ9kdiL8CGJOYb4pGjoLfF" crossorigin="anonymous"></script>
+    <script src="/cv-generator.js?v=2026-08-22" integrity="sha384-T1vNmty3vczo+zHTVzu9F4JT8l9/xYMFbs0J4Uhhts8aF8h4IT3WXocgHfui1i5Z" crossorigin="anonymous"></script>
     <script src="/script.js" integrity="sha384-Ui8MgaGaK4apBFzmwYrPnghhg0p6IrQHqqA+hTeaWpCNofv5Ljb3BClyiiJEBAnd" crossorigin="anonymous"></script>
 </body>
 </html>

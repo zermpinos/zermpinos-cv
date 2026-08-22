@@ -7,7 +7,7 @@ window.CV_DATA = {
             glyph: '$',
             blocks: [
                 { t: 'p', text: 'Technical Operations Engineer based in Athens, Greece. 3+ years keeping critical law enforcement infrastructure running nationwide: 50+ forensic instruments, a project worth around 3M EUR, and 99.5% uptime across Greece.' },
-                { t: 'p', text: 'Now bringing that operational discipline into cybersecurity and IT operations.' },
+                { t: 'p', text: 'Now bringing that operational discipline into cybersecurity and IT operations, backed by a self-hosted Linux and Docker network security stack built and documented first-hand.' },
                 { t: 'stats', items: [
                     { n: '99.5%', l: 'System Uptime' },
                     { n: '50+', l: 'Critical Systems' },
@@ -40,6 +40,7 @@ window.CV_DATA = {
             glyph: '/',
             blocks: [
                 { t: 'group', title: 'IT Operations & Support', tags: ['Field Systems Maintenance', 'L1/L2 Technical Support', 'Endpoint & Linux Administration', 'Incident Triage & Response'] },
+                { t: 'group', title: 'Networking & Security', tags: ['Docker', 'DNS (Pi-hole / unbound)', 'nftables', 'WireGuard', 'Network Segmentation', 'Backup & Disaster Recovery'] },
                 { t: 'group', title: 'Development & Automation', tags: ['Python', 'MATLAB', 'Git', 'Data Analysis'] },
                 { t: 'group', title: 'Quality & Compliance', tags: ['ISO 27001', 'ISO 9001', 'ISO 13485', 'ISO 14001', 'ISO 45001'] }
             ]
@@ -58,7 +59,7 @@ window.CV_DATA = {
             label: 'Projects',
             glyph: '*',
             blocks: [
-                { t: 'project', title: 'Network-Wide Ad Blocking & Privacy Protection', date: 'APR 2026 - PRESENT', status: 'LIVE', desc: 'Docker-based Pi-hole with DHCP auto-routing, 4 blocklists, and 6 device policies, protecting 5+ devices from 350k+ malicious domains with zero per-device config.', tech: ['Docker', 'DNS / DHCP', 'Linux', 'Pi-hole'] },
+                { t: 'project', title: 'Home Network Security & Infrastructure', date: 'APR 2026 - PRESENT', status: 'LIVE', desc: 'Self-hosted five-container Docker stack on a Raspberry Pi running DNS, VPN and home automation for a 12-device household. Recursive DNSSEC-validating resolver so no upstream provider sees household queries, 362k blocked domains, and both DNS-over-TLS and DNS-over-HTTPS bypass routes closed at the router. Seven IoT devices segmented to zero internet egress with local control intact, after DNS blocking alone left 576k refused cloud callbacks in 30 days. Default-deny nftables host firewall, WireGuard remote access, and pull-only nightly backups. Documented as a 33-note runbook set with a disaster-recovery procedure verified against a rebuild checklist.', tech: ['Docker', 'Linux', 'nftables', 'DNS (Pi-hole / unbound)', 'WireGuard', 'Network Segmentation'] },
                 { t: 'project', title: 'Armani Katehano Club Platform', date: 'MAR 2026 - PRESENT', status: 'LIVE', desc: 'Full-stack app for a competitive basketball club. Public dashboard tracks 13 players across PPG, RPG, APG, and efficiency, with live results, standings, and an admin/coach multi-portal backend.', tech: ['Next.js', 'TypeScript', 'Prisma', 'PostgreSQL'], url: 'https://armani-katehano.com' },
                 { t: 'project', title: 'Boot.dev: Back-end Developer Path', date: 'JUN 2026 - PRESENT', status: 'ACTIVE', desc: 'Working through the Back-end Developer Path (Python & Go). Completed Python (fundamentals + OOP), Linux, and Git with hands-on projects (a Python AI agent, Bookbot, and an Asteroids game). Currently working through Go, functional programming, and data structures & algorithms.', tech: ['Python', 'Go', 'Linux', 'Git'], url: 'https://www.boot.dev/u/zermpinos' },
                 { t: 'project', title: 'Personal Linux Security & Hardening', date: 'MAR 2025 - PRESENT', status: 'ACTIVE', desc: 'Daily-drives Linux with regular Lynis security audits. Applied hardening to personal machines covering common attack surfaces.', tech: ['Linux', 'Lynis', 'System Hardening'] },
