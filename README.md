@@ -17,10 +17,10 @@ All static files live under `public/` and are served by Vercel. There is no buil
 | `public/explore.css` | Styling for the game/explore view: canvas stage, HUD, and panels |
 | `public/styles.css` | Full visual layer: dark theme, responsive layout, scroll progress indicator, animated cards, mobile hamburger menu |
 | `public/script.js` | Classic page behavior: scroll progress bar, smooth scrolling, active nav highlighting via `IntersectionObserver`, hamburger menu, dynamic footer year |
-| `public/cv-generator.js` | Client-side one-page PDF export via jsPDF; renders header, summary, experience, education, skills, and projects sections to A4 |
+| `public/cv-generator.js` | Client-side PDF export via jsPDF in English and Greek; renders header, summary, experience, education, skills, and projects to A4 |
 | `public/jspdf.umd.min.js` | Vendored jsPDF UMD bundle; self-hosted to satisfy `script-src 'self'` CSP |
 | `public/favicon.svg` | SVG favicon |
-| `public/fonts/` | Self-hosted variable WOFF2 fonts (JetBrains Mono, Work Sans); eliminates the Google Fonts external dependency |
+| `public/fonts/` | Self-hosted variable WOFF2 fonts (JetBrains Mono, Work Sans), eliminating the Google Fonts external dependency, plus the Liberation Sans TTF subset the Greek PDF embeds |
 | `public/img/` | Self-hosted images: responsive portrait (160/280/560 px) and OG cover; eliminates the Cloudinary external dependency |
 | `public/robots.txt` | Crawl policy; references sitemap |
 | `public/sitemap.xml` | Single-URL sitemap for the canonical origin |
@@ -54,7 +54,9 @@ CSS and JS assets are served with `Cache-Control: public, max-age=0, must-revali
 
 ## PDF export
 
-Clicking the CV download button calls `generateCV()` entirely in the browser with no server round-trip. jsPDF renders a single A4 page with hardcoded layout logic (margins, line heights, section titles, bullet points). The output file is saved as `Panagiotis_Zermpinos_CV.pdf`.
+Both pages carry two download buttons. Each calls `generateCV(lang)` entirely in the browser with no server round-trip. jsPDF renders A4 with hardcoded layout logic (margins, line heights, section titles, bullet points) and starts a new page when a section runs past the bottom margin. English saves as `Panagiotis_Zermpinos_CV.pdf`, Greek as `Panagiotis_Zermpinos_CV_EL.pdf`.
+
+The built-in PDF fonts are WinAnsi and carry no Greek glyphs, so the Greek export fetches and embeds a Liberation Sans subset at generation time. jsPDF also writes its own name into the `/Producer` metadata field unconditionally, so the generator blanks that field in the finished bytes and refuses to download if any trace of the library name survives.
 
 jsPDF is vendored locally rather than loaded from a CDN so that the `script-src 'self'` CSP does not need to be relaxed.
 

@@ -1,18 +1,18 @@
 window.CV_DATA = {
     name: 'PANAGIOTIS ZERMPINOS',
-    title: 'Technical Operations Engineer, moving into Cybersecurity',
+    title: 'IT System Administrator, moving into Cybersecurity',
     stations: {
         about: {
             label: 'About',
             glyph: '$',
             blocks: [
-                { t: 'p', text: 'Technical Operations Engineer based in Athens, Greece. 3 years keeping critical law enforcement infrastructure running nationwide: 50+ forensic instruments, a project worth around 3M EUR, and 99.5% uptime across Greece.' },
-                { t: 'p', text: 'Now bringing that operational discipline into cybersecurity and IT operations, backed by a self-hosted Linux and Docker network security stack built and documented first-hand.' },
+                { t: 'p', text: 'IT System Administrator based in Athens, Greece. Runs on-premises and remote infrastructure for Mobics S.A. and its external partners: servers, networks, firewalls, endpoints, backups and monitoring.' },
+                { t: 'p', text: 'Before that, 3 years keeping critical law enforcement infrastructure running nationwide: 50+ forensic instruments, a project worth around 3M EUR, and 99.5% uptime across Greece. Moving deeper into cybersecurity, backed by a self-hosted Linux and Docker network security stack built and documented first-hand.' },
                 { t: 'stats', items: [
                     { n: '99.5%', l: 'System Uptime' },
                     { n: '50+', l: 'Critical Systems' },
                     { n: '~3M', l: 'National Project (EUR)' },
-                    { n: '3+', l: 'Years in Ops' }
+                    { n: '4+', l: 'Years in Ops' }
                 ] }
             ]
         },
@@ -20,6 +20,11 @@ window.CV_DATA = {
             label: 'Experience',
             glyph: '>',
             blocks: [
+                { t: 'entry', title: 'IT System Administrator', sub: 'Mobics S.A.', date: 'SEP 2026 - PRESENT', bullets: [
+                    'On-premises and remote infrastructure for the company and its external partners: servers, networks, Zyxel firewalls, endpoints and backups.',
+                    'Administration and support of the core IT services the business runs on, including Microsoft 365.',
+                    'Standing up monitoring and alerting with Zabbix, Grafana and Prometheus across internal and partner-facing services.'
+                ] },
                 { t: 'entry', title: 'Application & Technical Support Engineer', sub: 'bioMDx IntelligenceX & SafeBlood', date: 'SEP 2023 - AUG 2026', bullets: [
                     'Sole technical owner of 50+ criminal photography instruments nationwide, maintaining 99.5% uptime with same-day incident response.',
                     'Rapid L1/L2 triage and resolution for security-critical systems in law enforcement environments.',
@@ -39,8 +44,8 @@ window.CV_DATA = {
             label: 'Skills',
             glyph: '/',
             blocks: [
-                { t: 'group', title: 'IT Operations & Support', tags: ['Field Systems Maintenance', 'L1/L2 Technical Support', 'Endpoint & Linux Administration', 'Incident Triage & Response'] },
-                { t: 'group', title: 'Networking & Security', tags: ['Docker', 'DNS (Pi-hole / unbound)', 'nftables', 'WireGuard', 'Network Segmentation', 'Backup & Disaster Recovery'] },
+                { t: 'group', title: 'IT Operations & Support', tags: ['Server Administration', 'Endpoint & Linux Administration', 'Microsoft 365', 'L1/L2 Technical Support', 'Incident Triage & Response', 'Monitoring & Alerting (Zabbix / Grafana / Prometheus)', 'Field Systems Maintenance'] },
+                { t: 'group', title: 'Networking & Security', tags: ['Firewall Administration (Zyxel)', 'nftables', 'Network Segmentation', 'WireGuard', 'DNS (Pi-hole / unbound)', 'Docker', 'Backup & Disaster Recovery'] },
                 { t: 'group', title: 'Development & Automation', tags: ['Python', 'MATLAB', 'Git', 'Data Analysis'] },
                 { t: 'group', title: 'Quality & Compliance', tags: ['ISO 27001', 'ISO 9001', 'ISO 13485', 'ISO 14001', 'ISO 45001'] }
             ]
