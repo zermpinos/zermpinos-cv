@@ -21,9 +21,9 @@ window.CV_DATA = {
             glyph: '>',
             blocks: [
                 { t: 'entry', title: 'IT System Administrator', sub: 'Mobics S.A.', date: 'SEP 2026 - PRESENT', bullets: [
-                    'On-premises and remote infrastructure for the company and its external partners: servers, networks, firewalls, endpoints and backups.',
-                    'Administration and support of the core IT services the business runs on.',
-                    'Standing up monitoring and alerting across internal and partner-facing services.'
+                    'On-premises and remote infrastructure for the company and its external partners: servers, networks, Zyxel firewalls, endpoints and backups.',
+                    'Administration and support of the core IT services the business runs on, including Microsoft 365.',
+                    'Standing up monitoring and alerting with Zabbix, Grafana and Prometheus across internal and partner-facing services.'
                 ] },
                 { t: 'entry', title: 'Application & Technical Support Engineer', sub: 'bioMDx IntelligenceX & SafeBlood', date: 'SEP 2023 - AUG 2026', bullets: [
                     'Sole technical owner of 50+ criminal photography instruments nationwide, maintaining 99.5% uptime with same-day incident response.',
@@ -44,8 +44,8 @@ window.CV_DATA = {
             label: 'Skills',
             glyph: '/',
             blocks: [
-                { t: 'group', title: 'IT Operations & Support', tags: ['Server Administration', 'Endpoint & Linux Administration', 'L1/L2 Technical Support', 'Incident Triage & Response', 'Monitoring & Alerting', 'Field Systems Maintenance'] },
-                { t: 'group', title: 'Networking & Security', tags: ['Firewall Administration', 'nftables', 'Network Segmentation', 'WireGuard', 'DNS (Pi-hole / unbound)', 'Docker', 'Backup & Disaster Recovery'] },
+                { t: 'group', title: 'IT Operations & Support', tags: ['Server Administration', 'Endpoint & Linux Administration', 'Microsoft 365', 'L1/L2 Technical Support', 'Incident Triage & Response', 'Monitoring & Alerting (Zabbix / Grafana / Prometheus)', 'Field Systems Maintenance'] },
+                { t: 'group', title: 'Networking & Security', tags: ['Firewall Administration (Zyxel)', 'nftables', 'Network Segmentation', 'WireGuard', 'DNS (Pi-hole / unbound)', 'Docker', 'Backup & Disaster Recovery'] },
                 { t: 'group', title: 'Development & Automation', tags: ['Python', 'MATLAB', 'Git', 'Data Analysis'] },
                 { t: 'group', title: 'Quality & Compliance', tags: ['ISO 27001', 'ISO 9001', 'ISO 13485', 'ISO 14001', 'ISO 45001'] }
             ]

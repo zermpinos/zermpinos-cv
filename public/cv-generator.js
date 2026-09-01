@@ -23,9 +23,9 @@ const CV = {
                 org: 'Mobics S.A.',
                 dates: 'Sep 2026 - Present',
                 bullets: [
-                    'On-premises and remote infrastructure for the company and its external partners: servers, networks, firewalls, endpoints and backups',
-                    'Administration and support of the core IT services the business runs on',
-                    'Standing up monitoring and alerting across internal and partner-facing services'
+                    'On-premises and remote infrastructure for the company and its external partners: servers, networks, Zyxel firewalls, endpoints and backups',
+                    'Administration and support of the core IT services the business runs on, including Microsoft 365',
+                    'Standing up monitoring and alerting with Zabbix, Grafana and Prometheus across internal and partner-facing services'
                 ]
             },
             {
@@ -66,19 +66,12 @@ const CV = {
             ]
         },
         skills: [
-            { label: 'IT Operations & Support:', items: 'Server Administration, Endpoint & Linux Administration, L1/L2 Technical Support, Incident Triage & Response, Monitoring & Alerting, Field Systems Maintenance' },
-            { label: 'Networking & Security:', items: 'Firewall Administration, nftables, Network Segmentation, WireGuard, DNS (Pi-hole / unbound), Docker, Backup & Disaster Recovery' },
+            { label: 'IT Operations & Support:', items: 'Server Administration, Endpoint & Linux Administration, Microsoft 365, L1/L2 Technical Support, Incident Triage & Response, Monitoring & Alerting (Zabbix / Grafana / Prometheus), Field Systems Maintenance' },
+            { label: 'Networking & Security:', items: 'Firewall Administration (Zyxel), nftables, Network Segmentation, WireGuard, DNS (Pi-hole / unbound), Docker, Backup & Disaster Recovery' },
             { label: 'Development & Automation:', items: 'Python, MATLAB, Git, Data Analysis' },
             { label: 'Quality & Compliance:', items: 'ISO 27001, ISO 9001, ISO 13485, ISO 14001, ISO 45001' }
         ],
         projects: [
-            {
-                title: 'Boot.dev - Backend Developer Path',
-                links: [{ label: '(link)', url: 'https://www.boot.dev/u/zermpinos' }],
-                status: '[ACTIVE]',
-                dates: 'JUN 2026 - PRESENT',
-                body: 'Working through the Back-end Developer Path (Python & Go). Completed Python (fundamentals + OOP), Linux, and Git with hands-on projects (a Python AI agent, Bookbot, and an Asteroids game). Currently working through Go, functional programming, data structures & algorithms, and Docker.'
-            },
             {
                 title: 'Home Network Security & Infrastructure',
                 links: [],
@@ -92,6 +85,13 @@ const CV = {
                 status: '[LIVE]',
                 dates: 'MAR 2026 - PRESENT',
                 body: 'Full-stack web application for a competitive basketball club in active play. The public dashboard tracks 13 players across PPG, RPG, APG, and efficiency ratings, with live game results, standings, season-vs-all-time toggles, and a team leaderboard. Backed by a multi-portal architecture: an admin portal for full CRUD data management and a coach portal for roster announcements and match email distribution.'
+            },
+            {
+                title: 'Boot.dev - Backend Developer Path',
+                links: [{ label: '(link)', url: 'https://www.boot.dev/u/zermpinos' }],
+                status: '[ACTIVE]',
+                dates: 'JUN 2026 - PRESENT',
+                body: 'Working through the Back-end Developer Path (Python & Go). Completed Python (fundamentals + OOP), Linux, and Git with hands-on projects (a Python AI agent, Bookbot, and an Asteroids game). Currently working through Go, functional programming, data structures & algorithms, and Docker.'
             },
             {
                 title: 'Personal Linux Security & Hardening',
@@ -137,9 +137,9 @@ const CV = {
                 org: 'Mobics S.A.',
                 dates: 'Σεπ 2026 - Σήμερα',
                 bullets: [
-                    'Υποδομές on-premises και απομακρυσμένες, για την εταιρεία και τους εξωτερικούς της συνεργάτες: servers, δίκτυα, firewalls, endpoints και backups',
-                    'Διαχείριση και υποστήριξη των βασικών υπηρεσιών πληροφορικής στις οποίες στηρίζεται η λειτουργία της εταιρείας',
-                    'Σχεδιασμός και υλοποίηση monitoring και alerting για εσωτερικές υπηρεσίες και υπηρεσίες προς συνεργάτες'
+                    'Υποδομές on-premises και απομακρυσμένες, για την εταιρεία και τους εξωτερικούς της συνεργάτες: servers, δίκτυα, Zyxel firewalls, endpoints και backups',
+                    'Διαχείριση και υποστήριξη των βασικών υπηρεσιών πληροφορικής στις οποίες στηρίζεται η λειτουργία της εταιρείας, μεταξύ αυτών και Microsoft 365',
+                    'Σχεδιασμός και υλοποίηση monitoring και alerting με Zabbix, Grafana και Prometheus, για εσωτερικές υπηρεσίες και υπηρεσίες προς συνεργάτες'
                 ]
             },
             {
@@ -180,19 +180,12 @@ const CV = {
             ]
         },
         skills: [
-            { label: 'IT Operations & Support:', items: 'Server Administration, Endpoint & Linux Administration, L1/L2 Technical Support, Incident Triage & Response, Monitoring & Alerting, Field Systems Maintenance' },
-            { label: 'Networking & Security:', items: 'Firewall Administration, nftables, Network Segmentation, WireGuard, DNS (Pi-hole / unbound), Docker, Backup & Disaster Recovery' },
+            { label: 'IT Operations & Support:', items: 'Server Administration, Endpoint & Linux Administration, Microsoft 365, L1/L2 Technical Support, Incident Triage & Response, Monitoring & Alerting (Zabbix / Grafana / Prometheus), Field Systems Maintenance' },
+            { label: 'Networking & Security:', items: 'Firewall Administration (Zyxel), nftables, Network Segmentation, WireGuard, DNS (Pi-hole / unbound), Docker, Backup & Disaster Recovery' },
             { label: 'Development & Automation:', items: 'Python, MATLAB, Git, Data Analysis' },
             { label: 'Quality & Compliance:', items: 'ISO 27001, ISO 9001, ISO 13485, ISO 14001, ISO 45001' }
         ],
         projects: [
-            {
-                title: 'Boot.dev - Backend Developer Path',
-                links: [{ label: '(σύνδεσμος)', url: 'https://www.boot.dev/u/zermpinos' }],
-                status: '[ΕΝΕΡΓΟ]',
-                dates: 'ΙΟΥΝ 2026 - ΣΗΜΕΡΑ',
-                body: 'Back-end Developer Path (Python & Go). Ολοκληρωμένα: Python, Object Oriented Programming, Linux, Git, με έργα Bookbot, Asteroids και AI Agent. Σε εξέλιξη: Go, Functional Programming, Data Structures & Algorithms, Docker.'
-            },
             {
                 title: 'Home Network Security & Infrastructure',
                 links: [],
@@ -206,6 +199,13 @@ const CV = {
                 status: '[ΣΕ ΛΕΙΤΟΥΡΓΙΑ]',
                 dates: 'ΜΑΡ 2026 - ΣΗΜΕΡΑ',
                 body: 'Full-stack web application για αγωνιστικό σύλλογο καλαθοσφαίρισης εν ενεργεία. Το public dashboard παρακολουθεί 13 παίκτες σε PPG, RPG, APG και efficiency ratings, με live αποτελέσματα αγώνων, standings, εναλλαγή season και all-time, και team leaderboard. Multi-portal αρχιτεκτονική: admin portal για πλήρη CRUD διαχείριση δεδομένων και coach portal για ανακοινώσεις ρόστερ και αποστολή email αγώνων.'
+            },
+            {
+                title: 'Boot.dev - Backend Developer Path',
+                links: [{ label: '(σύνδεσμος)', url: 'https://www.boot.dev/u/zermpinos' }],
+                status: '[ΕΝΕΡΓΟ]',
+                dates: 'ΙΟΥΝ 2026 - ΣΗΜΕΡΑ',
+                body: 'Back-end Developer Path (Python & Go). Ολοκληρωμένα: Python, Object Oriented Programming, Linux, Git, με έργα Bookbot, Asteroids και AI Agent. Σε εξέλιξη: Go, Functional Programming, Data Structures & Algorithms, Docker.'
             },
             {
                 title: 'Personal Linux Security & Hardening',
