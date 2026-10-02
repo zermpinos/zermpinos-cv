@@ -23,9 +23,10 @@ const CV = {
                 org: 'Mobics S.A.',
                 dates: 'Sep 2026 - Present',
                 bullets: [
-                    'On-premises and remote infrastructure for the company and its external partners: servers, networks, Zyxel firewalls, endpoints and backups',
-                    'Administration and support of the core IT services the business runs on, including Microsoft 365',
-                    'Standing up monitoring and alerting with Zabbix, Grafana and Prometheus across internal and partner-facing services'
+                    'On-premises and remote infrastructure across two sites, for the company and its external partners: servers on VMware and Windows Server, networks, Zyxel firewalls, endpoints and backups',
+                    'Microsoft 365 and Entra ID administration: user onboarding and offboarding, Exchange, Teams and MFA enforcement',
+                    'Extending Zabbix monitoring, with alerts reaching partners and customers, and adding Grafana on top',
+                    'Day-to-day user support. Wrote runbooks and diagrams, and updated the asset inventory at both sites'
                 ]
             },
             {
@@ -66,7 +67,7 @@ const CV = {
             ]
         },
         skills: [
-            { label: 'IT Operations & Support:', items: 'Server Administration, Endpoint & Linux Administration, Microsoft 365, L1/L2 Technical Support, Incident Triage & Response, Monitoring & Alerting (Zabbix / Grafana / Prometheus), Field Systems Maintenance' },
+            { label: 'IT Operations & Support:', items: 'Server Administration, Endpoint & Linux Administration, Microsoft 365, L1/L2 Technical Support, Incident Triage & Response, Monitoring & Alerting (Zabbix / Grafana), Field Systems Maintenance' },
             { label: 'Networking & Security:', items: 'Firewall Administration (Zyxel), nftables, Network Segmentation, WireGuard, DNS (Pi-hole / unbound), Docker, Backup & Disaster Recovery' },
             { label: 'Development & Automation:', items: 'Python, MATLAB, Git, Data Analysis' },
             { label: 'Quality & Compliance:', items: 'ISO 27001, ISO 9001, ISO 13485, ISO 14001, ISO 45001' }
@@ -127,7 +128,7 @@ const CV = {
             skills: 'ΤΕΧΝΙΚΕΣ ΔΕΞΙΟΤΗΤΕΣ',
             projects: 'ΕΡΓΑ'
         },
-        summary: 'IT System Administrator με ευθύνη για υποδομές on-premises και απομακρυσμένες: servers, δίκτυα, firewalls, endpoints, backups και βασικές υπηρεσίες πληροφορικής, για την εταιρεία και τους εξωτερικούς της συνεργάτες. ' +
+        summary: 'IT System Administrator με ευθύνη για υποδομές, με φυσική παρουσία και εξ αποστάσεως: servers, δίκτυα, firewalls, endpoints, backups και βασικές υπηρεσίες πληροφορικής, για την εταιρεία και τους εξωτερικούς της συνεργάτες. ' +
             'Προηγήθηκαν 3 χρόνια στη συντήρηση κρίσιμων υποδομών των σωμάτων ασφαλείας σε πανελλαδικό επίπεδο, ' +
             'ως αποκλειστικός τεχνικός υπεύθυνος για 50+ εγκληματολογικά συστήματα σε όλη την Ελλάδα, με 99,5% διαθεσιμότητα σε έργο ~3 εκατ. €. ' +
             'Εμπειρία στη διατήρηση συμμόρφωσης με τα πρότυπα ISO 27001, 9001 και 13485.',
@@ -137,9 +138,10 @@ const CV = {
                 org: 'Mobics S.A.',
                 dates: 'Σεπ 2026 - Σήμερα',
                 bullets: [
-                    'Υποδομές on-premises και απομακρυσμένες, για την εταιρεία και τους εξωτερικούς της συνεργάτες: servers, δίκτυα, Zyxel firewalls, endpoints και backups',
-                    'Διαχείριση και υποστήριξη των βασικών υπηρεσιών πληροφορικής στις οποίες στηρίζεται η λειτουργία της εταιρείας, μεταξύ αυτών και Microsoft 365',
-                    'Σχεδιασμός και υλοποίηση monitoring και alerting με Zabbix, Grafana και Prometheus, για εσωτερικές υπηρεσίες και υπηρεσίες προς συνεργάτες'
+                    'Διαχείριση υποδομών πληροφορικής σε δύο τοποθεσίες, με φυσική παρουσία και εξ αποστάσεως, για την εταιρεία και τους εξωτερικούς της συνεργάτες: servers με VMware και Windows Server, δίκτυα, firewalls Zyxel, endpoints και backups',
+                    'Διαχείριση Microsoft 365 και Entra ID: δημιουργία και απενεργοποίηση λογαριασμών χρηστών, Exchange, Teams και επιβολή ελέγχου ταυτότητας πολλαπλών παραγόντων (MFA)',
+                    'Επέκταση της παρακολούθησης συστημάτων στο Zabbix, με αποστολή ειδοποιήσεων σε συνεργάτες και πελάτες, και ρύθμιση του Grafana με το Zabbix ως πηγή δεδομένων',
+                    'Καθημερινή υποστήριξη χρηστών. Σύνταξη διαδικασιών λειτουργίας (runbooks), σχεδίαση διαγραμμάτων και επικαιροποίηση της απογραφής εξοπλισμού και στις δύο τοποθεσίες'
                 ]
             },
             {
@@ -180,7 +182,7 @@ const CV = {
             ]
         },
         skills: [
-            { label: 'IT Operations & Support:', items: 'Server Administration, Endpoint & Linux Administration, Microsoft 365, L1/L2 Technical Support, Incident Triage & Response, Monitoring & Alerting (Zabbix / Grafana / Prometheus), Field Systems Maintenance' },
+            { label: 'IT Operations & Support:', items: 'Server Administration, Endpoint & Linux Administration, Microsoft 365, L1/L2 Technical Support, Incident Triage & Response, Monitoring & Alerting (Zabbix / Grafana), Field Systems Maintenance' },
             { label: 'Networking & Security:', items: 'Firewall Administration (Zyxel), nftables, Network Segmentation, WireGuard, DNS (Pi-hole / unbound), Docker, Backup & Disaster Recovery' },
             { label: 'Development & Automation:', items: 'Python, MATLAB, Git, Data Analysis' },
             { label: 'Quality & Compliance:', items: 'ISO 27001, ISO 9001, ISO 13485, ISO 14001, ISO 45001' }
