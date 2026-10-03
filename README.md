@@ -11,7 +11,7 @@ All static files live under `public/` and are served by Vercel. There is no buil
 | Path | Purpose |
 |------|---------|
 | `public/index.html` | Site root: the interactive **walkable CV game** (canvas + HUD); carries full SEO meta, Open Graph tags, and Person JSON-LD |
-| `public/classic.html` | Classic scrolling CV at `/classic`: hero, impact stats, experience, education, skills, projects, and contact; JSON-LD and Open Graph meta |
+| `public/classic.html` | Classic scrolling CV at `/classic`: hero, experience, education, skills, projects, and contact; JSON-LD and Open Graph meta |
 | `public/game.js` | 2D top-down game engine: rendering, follow-camera, keyboard + tap + joystick input, and the station panels |
 | `public/cv-data.js` | Single source of CV content (about, experience, skills, education, projects, contact) that feeds the game panels |
 | `public/explore.css` | Styling for the game/explore view: canvas stage, HUD, and panels |
